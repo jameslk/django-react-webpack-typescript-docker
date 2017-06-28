@@ -57,7 +57,9 @@ ROOT_URLCONF = 'ad_builder.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'ab_app/web/src')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -124,7 +126,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'ab_app/assets/compiled-assets'),
+    os.path.join(BASE_DIR, 'ab_app/web/compiled-assets'),
 )
 
 STATIC_URL = '/static/'
@@ -132,6 +134,6 @@ STATIC_URL = '/static/'
 WEBPACK_LOADER = {
     'DEFAULT': {
         'BUNDLE_DIR_NAME': '/',
-        'STATS_FILE': os.path.join(BASE_DIR, 'ab_app/assets/webpack-stats.json'),
+        'STATS_FILE': os.path.join(BASE_DIR, 'ab_app/web/webpack-stats.json'),
     }
 }

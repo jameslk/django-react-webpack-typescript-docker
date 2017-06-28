@@ -12,7 +12,7 @@ module.exports = {
     //your current directory. You don't have to specify the extension  now,
     //because you will specify extensions later in the `resolve` section
     entry: {
-        test: './pages/test.jsx'
+        index: './src/index.jsx'
     },
 
     output: {
