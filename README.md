@@ -45,7 +45,7 @@ https://www.typescriptlang.org/docs/handbook/react-&-webpack.html
 docker-compose up
 
 # Terminal 2
-nvm use # This will use the Python specified by .python-version
+nvm use # This will use the Node version specified by .nvmrc
 yarn install
 yarn run watch
 ```
