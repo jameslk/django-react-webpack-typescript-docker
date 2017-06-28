@@ -10,7 +10,10 @@
 # Running
 
 ```bash
-docker-compose run web
+nvm use 7
+npm install
+npm run build
+docker-compose up
 ```
 
 ## Building outside Docker:
@@ -19,9 +22,6 @@ docker-compose run web
 pyenv install 3.6.0
 pyenv shell 3.6.0
 pip install -r requirements.txt
-nvm use
-npm install
-npm run build
 ```
 
 # Development

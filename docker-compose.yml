@@ -4,13 +4,6 @@ services:
   db:
     image: postgres
 
-  assets:
-    build:
-      context: .
-      dockerfile: docker_dev/Dockerfile.assets
-    volumes:
-      - .:/project
-
   web:
     build:
       context: .
@@ -22,11 +15,3 @@ services:
       - "8000:8000"
     depends_on:
       - db
-      - assets
-
-  shell:
-    build:
-      context: .
-      dockerfile: docker_dev/Dockerfile.web
-    volumes:
-      - .:/project
