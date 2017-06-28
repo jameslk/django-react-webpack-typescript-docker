@@ -12,7 +12,7 @@ module.exports = {
     //your current directory. You don't have to specify the extension  now,
     //because you will specify extensions later in the `resolve` section
     entry: {
-        index: './src/index.jsx'
+        index: './src/index.tsx'
     },
 
     output: {
@@ -25,36 +25,53 @@ module.exports = {
     plugins: [
         //tells webpack where to store data about your bundles.
         new BundleTracker({path: __dirname, filename: 'webpack-stats.json'}),
+
         //makes jQuery available in every module
         new webpack.ProvidePlugin({
             $: 'jquery',
             jQuery: 'jquery',
             'window.jQuery': 'jquery'
-        })
+        }),
+
+        new webpack.optimize.ModuleConcatenationPlugin()
     ],
 
     module: {
-        loaders: [
-            //a regexp that tells webpack use the following loaders on all
-            //.js and .jsx files
-            {test: /\.jsx?$/,
-                //we definitely don't want babel to transpile all the files in
-                //node_modules. That would take a long time.
-                exclude: /node_modules/,
-                //use the babel loader
-                loader: 'babel-loader',
-                query: {
-                    //specify that we will be dealing with React code
-                    presets: ['react']
-                }
+        rules: [
+            // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
+            {
+                test: /\.tsx?$/,
+
+                loaders: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            presets: ['es2015', 'es2016', 'es2017'],
+                            plugins: [
+                                'transform-async-to-generator',
+                                'transform-runtime'
+                            ]
+                        }
+                    },
+
+                    'awesome-typescript-loader'
+                ]
+            },
+
+            // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
+            {
+                enforce: 'pre',
+                test: /\.js$/,
+                loader: 'source-map-loader'
             }
         ]
     },
 
-    // resolve: {
-    //     //tells webpack where to look for modules
-    //     modulesDirectories: ['node_modules'],
-    //     //extensions that should be used to resolve modules
-    //     extensions: ['', '.js', '.jsx']
-    // }
+    // Enable sourcemaps for debugging webpack's output.
+    devtool: "inline-source-map",
+
+    resolve: {
+        // Add '.ts' and '.tsx' as resolvable extensions.
+        extensions: [".ts", ".tsx", ".js", ".json"]
+    },
 };
