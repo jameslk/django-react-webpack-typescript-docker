@@ -1,7 +1,7 @@
 # Django React Webpack TypeScript Docker Template
 
 This is a barebones mashup of Django, frontend tools and Docker.
-This application runs inside a docker container and displays a
+This application runs inside a Docker container and displays a
 "Hello world!" using a React component.
 It is meant to be a starting point for future applications using these
 technologies. Here's the full list of frameworks and libraries used:
@@ -19,16 +19,20 @@ technologies. Here's the full list of frameworks and libraries used:
 
 I followed these guides to set this up:
 
-Quickstart: Compose and Django:
+*Quickstart: Compose and Django:*
+
 https://docs.docker.com/compose/django/
 
-Using React with Django, with a little help from Webpack:
+*Using React with Django, with a little help from Webpack:*
+
 http://geezhawk.github.io/using-react-with-django-rest-framework
 
-Reconciling Django Templates with React Components
+*Reconciling Django Templates with React Components:*
+
 https://hackernoon.com/reconciling-djangos-mvc-templates-with-react-components-3aa986cf510a
 
-React & Webpack:
+*React & Webpack:*
+
 https://www.typescriptlang.org/docs/handbook/react-&-webpack.html
 
 # To use, first install these requirements
