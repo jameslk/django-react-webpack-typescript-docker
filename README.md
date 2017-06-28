@@ -10,10 +10,13 @@
 # Running
 
 ```bash
-nvm use 7
-npm install
-npm run build
+# Terminal 1
 docker-compose up
+
+# Terminal 2
+nvm use
+npm install
+npm run watch
 ```
 
 ## Building outside Docker:
