@@ -4,9 +4,11 @@ import * as ReactDom from 'react-dom';
 class Hello extends React.Component<any, any> {
     render() {
         return (
-            <h1>
-                Hello yo!
-            </h1>
+            <div>
+                <button className="btn btn-primary">
+                    Henlo
+                </button>
+            </div>
         )
     }
 }

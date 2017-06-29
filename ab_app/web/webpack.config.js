@@ -17,9 +17,9 @@ module.exports = {
     //your current directory. You don't have to specify the extension  now,
     //because you will specify extensions later in the `resolve` section
     entry: {
-        style: './src/style.scss',
-        index: './src/index.tsx',
-        shared: './src/shared.ts',
+        style: './src/app/style.scss',
+        shared: './src/app/shared.ts',
+        home: './src/home/home.tsx',
     },
 
     output: {
