@@ -3,8 +3,10 @@
 //require our dependencies
 var path = require('path');
 var webpack = require('webpack');
-var BundleTracker = require('webpack-bundle-tracker');
+
+var BundleTrackerPlugin = require('webpack-bundle-tracker');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var outputDir = path.resolve(path.join(__dirname, 'compiled-assets'));
 
@@ -15,6 +17,7 @@ module.exports = {
     //your current directory. You don't have to specify the extension  now,
     //because you will specify extensions later in the `resolve` section
     entry: {
+        style: './src/style.scss',
         index: './src/index.tsx',
         shared: './src/shared.ts',
     },
@@ -25,29 +28,6 @@ module.exports = {
         //naming convention webpack should use for your files
         filename: '[name]-[hash].js',
     },
-
-    plugins: [
-        new CleanWebpackPlugin(outputDir),
-
-        //tells webpack where to store data about your bundles.
-        new BundleTracker({path: __dirname, filename: 'webpack-stats.json'}),
-
-        //makes jQuery available in every module
-        new webpack.ProvidePlugin({
-            $: 'jquery',
-            jQuery: 'jquery',
-            'window.jQuery': 'jquery'
-        }),
-
-        // Vendor/shared code splitting
-        // https://webpack.js.org/guides/code-splitting-libraries/
-        new webpack.optimize.CommonsChunkPlugin({
-            names: ['shared', 'manifest'] // Specify the common bundle's name.
-        }),
-
-        // Hoisting
-        new webpack.optimize.ModuleConcatenationPlugin()
-    ],
 
     module: {
         rules: [
@@ -76,9 +56,35 @@ module.exports = {
                 enforce: 'pre',
                 test: /\.js$/,
                 loader: 'source-map-loader'
+            },
+
+            {
+                test: /\.scss$/,
+                use: ExtractTextPlugin.extract({
+                    use: ['css-loader', 'sass-loader']
+                })
             }
         ]
     },
+
+    plugins: [
+        new CleanWebpackPlugin(outputDir),
+
+        //tells webpack where to store data about your bundles.
+        new BundleTrackerPlugin({path: __dirname, filename: 'webpack-stats.json'}),
+
+        // Vendor/shared code splitting
+        // https://webpack.js.org/guides/code-splitting-libraries/
+        new webpack.optimize.CommonsChunkPlugin({
+            names: ['shared', 'manifest'] // Specify the common bundle's name.
+        }),
+
+        // Hoisting
+        new webpack.optimize.ModuleConcatenationPlugin(),
+
+        // Stylesheets
+        new ExtractTextPlugin('[name]-[hash].css')
+    ],
 
     // Enable sourcemaps for debugging webpack's output.
     devtool: "inline-source-map",

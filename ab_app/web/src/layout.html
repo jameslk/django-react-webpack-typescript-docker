@@ -1,0 +1,30 @@
+{% load render_bundle from webpack_loader %}
+
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>{% block title %}AdBuilder{% endblock %}</title>
+
+    {% render_bundle 'style' 'css' %}
+
+    {% render_bundle 'manifest' 'js' %}
+    {% render_bundle 'shared' 'js' %}
+
+    {% block bottom_head_section %}{% endblock %}
+</head>
+
+<body>
+
+{% block body_content %}
+    <div class="app-container"></div>
+{% endblock %}
+
+{% block bottom_body_section %}{% endblock %}
+
+</body>
+
+</html>

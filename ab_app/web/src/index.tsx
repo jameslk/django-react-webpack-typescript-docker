@@ -5,10 +5,10 @@ class Hello extends React.Component<any, any> {
     render() {
         return (
             <h1>
-                Hello, React!
+                Hello yo!
             </h1>
         )
     }
 }
 
-ReactDom.render(<Hello />, document.getElementById('container'));
+ReactDom.render(<Hello />, document.querySelector('.app-container'));
