@@ -1,4 +1,4 @@
-"""ad_builder URL Configuration
+"""hello_world URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.10/topics/http/urls/
@@ -17,6 +17,6 @@ from django.conf.urls import url, include
 from django.contrib import admin
 
 urlpatterns = [
-    url(r'^/?', include('ab_app.urls')),
+    url(r'^/?', include('hello_world_app.urls')),
     url(r'^admin/', admin.site.urls),
 ]

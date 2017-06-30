@@ -9,6 +9,6 @@
     "lib": ["es2015", "es2016", "es2017", "dom"]
   },
   "include": [
-    "ab_app/web/src/**/*"
+    "hello_world_app/web/src/**/*"
   ]
 }
