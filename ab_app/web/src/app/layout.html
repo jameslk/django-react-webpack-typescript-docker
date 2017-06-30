@@ -19,9 +19,13 @@
 
 <body>
 
-{% block body_content %}
-    <div class="app-container"></div>
-{% endblock %}
+<div class="ab-app">
+    {% block app_content %}
+        <div class="app-content-container">
+            Loading...
+        </div>
+    {% endblock %}
+</div>
 
 {% block bottom_body_section %}{% endblock %}
 

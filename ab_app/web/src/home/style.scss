@@ -1,0 +1,26 @@
+.home-namespace {
+  margin-top: 5rem;
+
+  .home-options {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .home-option {
+    margin-bottom: 0.5rem;
+  }
+
+  .home-option-link {
+    display: block;
+    background: lighten($brand-primary, 30%);
+    color: $white;
+    padding: 1rem;
+    width: 80%;
+    margin: 0 auto;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}

@@ -1,3 +1,7 @@
 @import "variables";
 @import "bootstrap";
 
+.ab-app {
+  @import "layout";
+  @import "../home/style";
+}

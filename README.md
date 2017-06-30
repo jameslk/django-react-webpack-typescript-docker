@@ -3,8 +3,8 @@
 - pyenv
 - Python 3.6
 - nvm
-- npm 5
 - Nodejs 7
+- yarn
 - Docker
 
 # Running
@@ -15,8 +15,8 @@ docker-compose up
 
 # Terminal 2
 nvm use
-npm install
-npm run watch
+yarn install
+yarn run watch
 ```
 
 ## Building outside Docker:
@@ -29,7 +29,13 @@ pip install -r requirements.txt
 
 # Development
 
-## Locking dependencies
+## Installing JavaScript dependencies
+
+```bash
+yarn add <dependency>
+```
+
+## Locking Python dependencies
 
 Dependencies should be locked down with `pip-tools`. Example usage:
 

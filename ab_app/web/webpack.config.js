@@ -3,6 +3,7 @@
 //require our dependencies
 var path = require('path');
 var webpack = require('webpack');
+var glob = require('glob');
 
 var BundleTrackerPlugin = require('webpack-bundle-tracker');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -16,11 +17,10 @@ module.exports = {
     //the entry point we created earlier. Note that './' means
     //your current directory. You don't have to specify the extension  now,
     //because you will specify extensions later in the `resolve` section
-    entry: {
+    entry: Object.assign({
         style: './src/app/style.scss',
         shared: './src/app/shared.ts',
-        home: './src/home/home.tsx',
-    },
+    }, findBundles()),
 
     output: {
         //where you want your compiled bundle to be stored
@@ -94,3 +94,17 @@ module.exports = {
         extensions: [".ts", ".tsx", ".js", ".json"]
     },
 };
+
+function findBundles() {
+    const bundlePaths = glob.sync('./src/**/bundle.ts?', {
+        cwd: __dirname
+    });
+
+    return bundlePaths.reduce((bundles, bundlePath) => {
+        const bundleName = path.basename(path.dirname(bundlePath));
+
+        return Object.assign(bundles, {
+            [bundleName]: bundlePath
+        });
+    }, {});
+}
